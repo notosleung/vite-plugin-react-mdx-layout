@@ -1,5 +1,7 @@
 [English] | [简体中文](./README.zh-CN.md)
 
+**Deprecated：vite-plugin-react-mdx-wrapper**
+
 # vite-plugin-react-mdx-layout
 
 A lightweight Vite plugin that automatically wraps your `.mdx` files with a React component and handles frontmatter data injection.

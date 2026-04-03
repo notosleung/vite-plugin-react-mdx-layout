@@ -1,5 +1,7 @@
 [English](./README.md) | [简体中文]
 
+**已弃用：vite-plugin-react-mdx-wrapper**
+
 # vite-plugin-react-mdx-layout
 
 一个极简的 Vite 插件，自动为你的`.mdx`文件包裹 React 组件，并自动处理 Frontmatter 数据。
