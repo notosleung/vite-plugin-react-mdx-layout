@@ -1,0 +1,35 @@
+name: Publish to npm
+
+on:
+  push:
+    tags:
+      - "v*" # 当你 push 一个以 v 开头的标签时触发（如 v1.0.2）
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 9 # 确保版本与你本地一致
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: "https://registry.npmjs.org"
+          # 这步很关键，它会自动帮你处理 .npmrc 的基础配置
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build project
+        run: pnpm build
+
+      - name: Publish to npm
+        run: pnpm publish --access public --no-git-checks
+        env:
+          # 核心：将 GitHub Secret 注入为环境变量
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
